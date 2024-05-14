@@ -1,3 +1,6 @@
+const letters = require("../GameController/letters.js");
+const position = require("../GameController/position.js");
+
 class GameController {
     static InitializeShips() {
         var colors = require("cli-color");

@@ -89,7 +89,7 @@ class Battleship {
             var isHit = enemyController.AttemptShot(this.myFleet);
             
             console.log();
-            console.log(`Computer shot in ${computerPos.column}${computerPos.row} and ` + (isHit ? `has hit your ship !` : `miss`));
+            
             if (isHit) {
                 beep();
 

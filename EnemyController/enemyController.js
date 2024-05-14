@@ -1,4 +1,6 @@
 const gameController = require("../GameController/gameController.js");
+const position = require("../GameController/position.js");
+const letters = require("../GameController/letters.js");
 
 module.exports = class EnemyController {
 
@@ -14,7 +16,11 @@ module.exports = class EnemyController {
         } while(this.WasAttempted(attempt));
 
         this.attemptedShots.push(attempt);
-        return gameController.CheckIsHit(opposingFleet, attempt);
+        const isHit = gameController.CheckIsHit(opposingFleet, attempt);
+
+        console.log(`Computer shot in ${attempt.column}${attempt.row} and ` + (isHit ? `has hit your ship !` : `miss`));
+
+        return isHit;
     }
 
     WasAttempted(attempt) {
