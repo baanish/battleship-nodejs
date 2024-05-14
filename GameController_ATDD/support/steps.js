@@ -25,3 +25,8 @@ When("I check if the ship is valid", function(){
 Then("the result should be {bool}", function(expected){
   assert.strictEqual(actual, expected);
 });
+
+When("I select a position outside of the game grid", function() {
+  //TODO: Fill this out once implementation of check is in place
+  //actual = check position function on position outside the grid
+})
