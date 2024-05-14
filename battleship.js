@@ -66,10 +66,22 @@ class Battleship {
                 console.log("            -   (\\- |  \\ /  |  /)  -");
                 console.log("                 -\\  \\     /  /-");
                 console.log("                   \\  \\   /  /");
+
+                const wasShipSunk = this.SunkShipCheck(this.enemyFleet);
+                if(wasShipSunk) {
+                    console.log("One of your enemy's ships was sunk!");
+                    this.PrintShipsRemaining(this.enemyFleet);
+                }
             }
 
             console.log(isHit ? "Yeah ! Nice hit !" : "Miss");
 
+            if(gameController.GameOverCheck(this.enemyFleet)) {
+                console.log('You are the winner!')
+                break;
+            }
+
+            // Computer Turn
             var computerPos = this.GetRandomPosition();
             var isHit = gameController.CheckIsHit(this.myFleet, computerPos);
 
@@ -88,6 +100,17 @@ class Battleship {
                 console.log("            -   (\\- |  \\ /  |  /)  -");
                 console.log("                 -\\  \\     /  /-");
                 console.log("                   \\  \\   /  /");
+
+                const wasShipSunk = this.SunkShipCheck(this.myFleet);
+                if(wasShipSunk) {
+                    console.log("One of your ships was sunk!");
+                    this.PrintShipsRemaining(this.myFleet);
+                }
+            }
+
+            if(gameController.GameOverCheck(this.myFleet)) {
+                console.log('You lost!')
+                break;
             }
         }
         while (true);
@@ -97,6 +120,19 @@ class Battleship {
         var letter = letters.get(input.toUpperCase().substring(0, 1));
         var number = parseInt(input.substring(1, 2), 10);
         return new position(letter, number);
+    }
+
+    SunkShipCheck(ships) {
+        const sunkShipIndex = ships.findIndex((ship) => gameController.isShipSunk(ship));
+        const shipWasSunk = sunkShipIndex >= 0;
+        if(shipWasSunk) ships.splice(sunkShipIndex, 1);
+
+        return shipWasSunk;
+    }
+
+    PrintShipsRemaining(ships) {
+        const remainingShips = ships.map((ship) => ship.name);
+        console.log(`Ships remaining: ${remainingShips.join(', ')}`);
     }
 
     GetRandomPosition() {

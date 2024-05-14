@@ -1,22 +1,23 @@
 const assert = require('assert').strict;
 const gameController = require("../GameController/gameController.js");
 const letters = require("../GameController/letters.js");
-const position = require("../GameController/position.js")
+const position = require("../GameController/position.js");
+const setupTestShips = require('./utils.js');
 
 describe('checkIsHitTests', function () {
 
   it('should return true if there is a ship at the shooting position', function () {
-    var ships = gameController.InitializeShips();
-    counter = 1;
-    ships.forEach(ship => {
-      for (var i = 1; i <= ship.size; i++) {
-        column = letters.get(counter);
-        ship.addPosition(new position(letters.get(counter), i))
-      }
-      counter++;
-    })
+    const ships = setupTestShips();
     var actual = gameController.CheckIsHit(ships, new position(letters.B, 3));
     assert.ok(actual);
+  });
+
+  it('should set isHit when checkIsHit returns true', function () {
+    const ships = setupTestShips();
+    const position = ships[1].positions[1];
+    gameController.CheckIsHit(ships, position);
+
+    assert.ok(position.isHit);
   });
 
   it('should return false if there is no ship at the shooting position', function () {
