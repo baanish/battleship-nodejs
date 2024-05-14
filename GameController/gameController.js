@@ -1,6 +1,8 @@
 const letters = require("../GameController/letters.js");
 const position = require("../GameController/position.js");
 
+const Letters = require("./letters")
+
 class GameController {
     static InitializeShips() {
         var colors = require("cli-color");
@@ -26,15 +28,19 @@ class GameController {
                 if (position.row == shot.row && position.column == shot.column) {
                     returnvalue = true;
                     position.isHit = true;
-                }    
+                }
             });
         });
         return returnvalue;
     }
 
+    static isPositionValid(position) {
+        return Object.values(Letters).includes(position.column) && position.row < 9;
+    }
+
     static PositionsMatch(pos1, pos2) {
         return pos1.row == pos2.row && pos1.column == pos2.column;
-    } 
+    }
 
     static isShipValid(ship) {
         return ship.positions.length == ship.size;

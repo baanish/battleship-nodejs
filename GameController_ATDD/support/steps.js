@@ -26,7 +26,12 @@ Then("the result should be {bool}", function(expected){
   assert.strictEqual(actual, expected);
 });
 
-When("I select a position outside of the game grid", function() {
-  //TODO: Fill this out once implementation of check is in place
-  //actual = check position function on position outside the grid
-})
+When("I select a position outside the game grid", function() {
+  var selectedPosition = new position(letters.A, 10);
+  actual = gameController.isPositionValid(selectedPosition);
+});
+
+When("I select a position within the game grid", function() {
+  var selectedPosition = new position(letters.A, 8);
+  actual = gameController.isPositionValid(selectedPosition);
+});
