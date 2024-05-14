@@ -29,6 +29,10 @@ class GameController {
         return returnvalue;
     }
 
+    static PositionsMatch(pos1, pos2) {
+        return pos1.row == pos2.row && pos1.column == pos2.column;
+    } 
+
     static isShipValid(ship) {
         return ship.positions.length == ship.size;
     }
@@ -39,6 +43,16 @@ class GameController {
 
     static GameOverCheck(ships) {
         return ships.length === 0;
+    }
+
+    static GetRandomPosition() {
+        var rows = 8;
+        var lines = 8;
+        var rndColumn = Math.floor((Math.random() * lines));
+        var letter = letters.get(rndColumn + 1);
+        var number = Math.floor((Math.random() * rows));
+        var result = new position(letter, number);
+        return result;
     }
 }
 

@@ -5,6 +5,8 @@ const cliColor = require('cli-color');
 const beep = require('beepbeep');
 const position = require("./GameController/position.js");
 const letters = require("./GameController/letters.js");
+const EnemyController = require('./EnemyController/enemyController.js');
+
 let telemetryWorker;
 
 class Battleship {
@@ -34,6 +36,8 @@ class Battleship {
     }
 
     StartGame() {
+        const enemyController = new EnemyController();
+
         console.clear();
         console.log("                  __");
         console.log("                 /  \\");
@@ -82,11 +86,8 @@ class Battleship {
             }
 
             // Computer Turn
-            var computerPos = this.GetRandomPosition();
-            var isHit = gameController.CheckIsHit(this.myFleet, computerPos);
-
-            telemetryWorker.postMessage({eventName: 'Computer_ShootPosition', properties:  {Position: computerPos.toString(), IsHit: isHit}});
-
+            var isHit = enemyController.AttemptShot(this.myFleet);
+            
             console.log();
             console.log(`Computer shot in ${computerPos.column}${computerPos.row} and ` + (isHit ? `has hit your ship !` : `miss`));
             if (isHit) {
