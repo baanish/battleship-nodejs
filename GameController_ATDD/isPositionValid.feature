@@ -5,9 +5,9 @@ Feature: Positions Picking
 
 Scenario:
   When I select a position outside the game grid
-  Then The result should be "false"
+  Then the result should be "false"
 
 Scenario:
   When I select a position within the game grid
-  Then The result should be "true"
+  Then the result should be "true"
 
