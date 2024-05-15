@@ -172,7 +172,7 @@ class Battleship {
                 isValid = gameController.isValidShipPosition(ship, myFleet);
                 if(!isValid) {
                     ship.positions = [];
-                    console.log(`The position of your ${ship.name} overlaps an existing ship. Please try again`);
+                    console.log(`The position of your ${ship.name} is invalid. Please try again`);
                 }
             } while(!isValid);
 

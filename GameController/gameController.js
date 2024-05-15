@@ -39,6 +39,9 @@ class GameController {
     }
 
     static isValidShipPosition(ship, ships) {
+        const badPositions = ship.positions.some((pos) => GameController.isPositionValid(pos));
+        if(badPositions) return false;
+
         const otherShips = ships.filter((s) => s != ship);
         return ship.positions.every((pos) => !GameController.doesOverlapShips(pos, otherShips));
     }
