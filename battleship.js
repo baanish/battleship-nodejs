@@ -36,13 +36,9 @@ class Battleship {
     }
 
     StartGame() {
-<<<<<<< Updated upstream
         const enemyController = new EnemyController();
 
         console.clear();
-=======
-        // console.clear();
->>>>>>> Stashed changes
         console.log("                  __");
         console.log("                 /  \\");
         console.log("           .-.  |    |");
@@ -175,52 +171,52 @@ class Battleship {
     InitializeEnemyFleet() {
         this.enemyFleet = gameController.InitializeShips();
 
-        this.enemyFleet.forEach(ship => {
-            const anchorPoint = this.GetRandomPosition();
-            const shipSize = ship.size;
-            const availableSpacesRight = 8 - anchorPoint.column.value;
+        // this.enemyFleet.forEach(ship => {
+        //     const anchorPoint = this.GetRandomPosition();
+        //     const shipSize = ship.size;
+        //     const availableSpacesRight = 8 - anchorPoint.column.value;
 
-            if (availableSpacesRight >= shipSize -1) {
-                const anchorVal = anchorPoint.column.value;
+        //     if (availableSpacesRight >= shipSize -1) {
+        //         const anchorVal = anchorPoint.column.value;
 
-                for (let i = anchorVal; i < shipSize + anchorVal; i++) {
-                    ship.addPosition(new position(letters[anchorPoint.column.key], i));
-                }
+        //         for (let i = anchorVal; i < shipSize + anchorVal; i++) {
+        //             ship.addPosition(new position(letters[anchorPoint.column.key], i));
+        //         }
 
-                return;
-            }
+        //         return;
+        //     }
 
-            for (let i = anchorPoint.column.value; i < shipSize + anchorVal; i--) {
-                ship.addPosition(new position(letters[anchorPoint.column.key], i));
-            }
+        //     for (let i = anchorPoint.column.value; i < shipSize + anchorPoint.column.value; i--) {
+        //         return ship.addPosition(new position(letters[anchorPoint.column.key], i));
+        //     }
 
-            return;
-        });
+        //     return;
+        // });
 
-        console.log(this.enemyFleet);
+        // console.log(this.enemyFleet);
 
         // LEAVING FOR FUTURE SHOOTING TESTS
-        // this.enemyFleet[0].addPosition(new position(letters.B, 4));
-        // this.enemyFleet[0].addPosition(new position(letters.B, 5));
-        // this.enemyFleet[0].addPosition(new position(letters.B, 6));
-        // this.enemyFleet[0].addPosition(new position(letters.B, 7));
-        // this.enemyFleet[0].addPosition(new position(letters.B, 8));
+        this.enemyFleet[0].addPosition(new position(letters.B, 4));
+        this.enemyFleet[0].addPosition(new position(letters.B, 5));
+        this.enemyFleet[0].addPosition(new position(letters.B, 6));
+        this.enemyFleet[0].addPosition(new position(letters.B, 7));
+        this.enemyFleet[0].addPosition(new position(letters.B, 8));
 
-        // this.enemyFleet[1].addPosition(new position(letters.E, 6));
-        // this.enemyFleet[1].addPosition(new position(letters.E, 7));
-        // this.enemyFleet[1].addPosition(new position(letters.E, 8));
-        // this.enemyFleet[1].addPosition(new position(letters.E, 9));
+        this.enemyFleet[1].addPosition(new position(letters.E, 6));
+        this.enemyFleet[1].addPosition(new position(letters.E, 7));
+        this.enemyFleet[1].addPosition(new position(letters.E, 8));
+        this.enemyFleet[1].addPosition(new position(letters.E, 9));
 
-        // this.enemyFleet[2].addPosition(new position(letters.A, 3));
-        // this.enemyFleet[2].addPosition(new position(letters.B, 3));
-        // this.enemyFleet[2].addPosition(new position(letters.C, 3));
+        this.enemyFleet[2].addPosition(new position(letters.A, 3));
+        this.enemyFleet[2].addPosition(new position(letters.B, 3));
+        this.enemyFleet[2].addPosition(new position(letters.C, 3));
 
-        // this.enemyFleet[3].addPosition(new position(letters.F, 8));
-        // this.enemyFleet[3].addPosition(new position(letters.G, 8));
-        // this.enemyFleet[3].addPosition(new position(letters.H, 8));
+        this.enemyFleet[3].addPosition(new position(letters.F, 8));
+        this.enemyFleet[3].addPosition(new position(letters.G, 8));
+        this.enemyFleet[3].addPosition(new position(letters.H, 8));
 
-        // this.enemyFleet[4].addPosition(new position(letters.C, 5));
-        // this.enemyFleet[4].addPosition(new position(letters.C, 6));
+        this.enemyFleet[4].addPosition(new position(letters.C, 5));
+        this.enemyFleet[4].addPosition(new position(letters.C, 6));
     }
 }
 
