@@ -38,6 +38,15 @@ class GameController {
         return Object.values(Letters).includes(position.column) && position.row < 9;
     }
 
+    static isValidShipPosition(ship, ships) {
+        const otherShips = ships.filter((s) => s != ship);
+        return ship.positions.every((pos) => !GameController.doesOverlapShips(pos, otherShips));
+    }
+
+    static doesOverlapShips(position, otherShips) {
+        return otherShips.some((ship) => ship.positions.some((pos) => GameController.PositionsMatch(pos, position)));
+    }
+
     static PositionsMatch(pos1, pos2) {
         return pos1.row == pos2.row && pos1.column == pos2.column;
     }

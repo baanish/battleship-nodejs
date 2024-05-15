@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "Battleship with Node JS",
   "main": "index.js",
+  "bin": {
+    "battleship": "./index.js"
+  },
   "scripts": {
     "start": "node ./index.js",
     "mocha": "mocha ./**/*Tests.js",
