@@ -124,7 +124,7 @@ class Battleship {
 
     static ParsePosition(input) {
         var letter = letters.get(input.toUpperCase().substring(0, 1));
-        var number = parseInt(input.substring(1, 2), 10);
+        var number = parseInt(input.substring(1), 10);
         return new position(letter, number);
     }
 
