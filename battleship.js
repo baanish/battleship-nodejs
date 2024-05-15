@@ -5,6 +5,7 @@ const cliColor = require('cli-color');
 const beep = require('beepbeep');
 const position = require("./GameController/position.js");
 const letters = require("./GameController/letters.js");
+const Directions = require('./GameController/cardinalDirection.js');
 const EnemyController = require('./EnemyController/enemyController.js');
 
 let telemetryWorker;
@@ -191,8 +192,13 @@ class Battleship {
             if(!isValid) console.log(`${pos} is an invalid position. Please try again`);
         } while(!isValid);
 
-        console.log(`Please enter a direction for ${ship.name}`);
-        const direction = readline.question();
+        let direction;
+        do {
+            console.log(`Please enter a direction for ${ship.name}`);
+            direction = Directions.get(readline.question().toUpperCase());
+            if(!direction) console.log('Direction is not valid. Valid options are "N", "S", "E", "W"');
+        } while(!direction);
+
         ship.setPosition(pos, direction);
     }
 

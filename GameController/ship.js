@@ -1,5 +1,6 @@
 const position = require("./position.js");
 const letters = require("./letters.js");
+const Directions = require('./cardinalDirection.js');
 
 class Ship {
     constructor(name, size, color) {
@@ -12,10 +13,10 @@ class Ship {
     setPosition(startPos, direction) {
         this.positions.push(startPos);
         switch(direction) {
-            case 'n': return this.northPositions(startPos);
-            case 's': return this.southPositions(startPos);
-            case 'e': return this.eastPositions(startPos);
-            case 'w': return this.westPositions(startPos);
+            case Directions.N: return this.northPositions(startPos);
+            case Directions.S: return this.southPositions(startPos);
+            case Directions.E: return this.eastPositions(startPos);
+            case Directions.W: return this.westPositions(startPos);
         }
     }
 
