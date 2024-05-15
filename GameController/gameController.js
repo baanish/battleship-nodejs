@@ -35,7 +35,7 @@ class GameController {
     }
 
     static isPositionValid(position) {
-        return Object.values(Letters).includes(position.column) && position.row < 9;
+        return Object.values(Letters).includes(position.column) && position.row < 9 && position.row > 0;
     }
 
     static PositionsMatch(pos1, pos2) {
