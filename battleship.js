@@ -176,7 +176,7 @@ class Battleship {
                 }
             } while(!isValid);
 
-            console.log(`${ship.name} positions`, ship.positions.map((pos) => pos.toString()));
+            console.log(`${ship.name} covers positions`, ship.positions.map((pos) => pos.toString()).join(', '));
         })
 
         this.myFleet = myFleet;

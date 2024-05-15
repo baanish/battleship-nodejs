@@ -20,6 +20,10 @@ class Ship {
         }
     }
 
+    addPosition(position) {
+        this.positions.push(position);
+    }
+
     northPositions(startPos) {
         for(let i = 1;i < this.size;i++) {
             const column = letters.get(startPos.column - i);
