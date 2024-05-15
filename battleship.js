@@ -176,6 +176,31 @@ class Battleship {
     InitializeEnemyFleet() {
         this.enemyFleet = gameController.InitializeShips();
 
+        // this.enemyFleet.forEach(ship => {
+        //     const anchorPoint = this.GetRandomPosition();
+        //     const shipSize = ship.size;
+        //     const availableSpacesRight = 8 - anchorPoint.column.value;
+
+        //     if (availableSpacesRight >= shipSize -1) {
+        //         const anchorVal = anchorPoint.column.value;
+
+        //         for (let i = anchorVal; i < shipSize + anchorVal; i++) {
+        //             ship.addPosition(new position(letters[anchorPoint.column.key], i));
+        //         }
+
+        //         return;
+        //     }
+
+        //     for (let i = anchorPoint.column.value; i < shipSize + anchorPoint.column.value; i--) {
+        //         return ship.addPosition(new position(letters[anchorPoint.column.key], i));
+        //     }
+
+        //     return;
+        // });
+
+        // console.log(this.enemyFleet);
+
+        // LEAVING FOR FUTURE SHOOTING TESTS
         this.enemyFleet[0].addPosition(new position(letters.B, 4));
         this.enemyFleet[0].addPosition(new position(letters.B, 5));
         this.enemyFleet[0].addPosition(new position(letters.B, 6));
