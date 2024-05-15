@@ -11,24 +11,24 @@ let telemetryWorker;
 
 class Battleship {
     start() {
-        telemetryWorker = new Worker("./TelemetryClient/telemetryClient.js");   
+        telemetryWorker = new Worker("./TelemetryClient/telemetryClient.js");
 
         console.log("Starting...");
         telemetryWorker.postMessage({eventName: 'ApplicationStarted', properties:  {Technology: 'Node.js'}});
 
-        console.log(cliColor.magenta("                                     |__"));
-        console.log(cliColor.magenta("                                     |\\/"));
-        console.log(cliColor.magenta("                                     ---"));
-        console.log(cliColor.magenta("                                     / | ["));
-        console.log(cliColor.magenta("                              !      | |||"));
-        console.log(cliColor.magenta("                            _/|     _/|-++'"));
-        console.log(cliColor.magenta("                        +  +--|    |--|--|_ |-"));
-        console.log(cliColor.magenta("                     { /|__|  |/\\__|  |--- |||__/"));
-        console.log(cliColor.magenta("                    +---------------___[}-_===_.'____                 /\\"));
-        console.log(cliColor.magenta("                ____`-' ||___-{]_| _[}-  |     |_[___\\==--            \\/   _"));
-        console.log(cliColor.magenta(" __..._____--==/___]_|__|_____________________________[___\\==--____,------' .7"));
-        console.log(cliColor.magenta("|                        Welcome to Battleship                         BB-61/"));
-        console.log(cliColor.magenta(" \\_________________________________________________________________________|"));
+        console.log(cliColor.gray("                                     |__"));
+        console.log(cliColor.gray("                                     |\\/"));
+        console.log(cliColor.gray("                                     ---"));
+        console.log(cliColor.gray("                                     / | ["));
+        console.log(cliColor.gray("                              !      | |||"));
+        console.log(cliColor.gray("                            _/|     _/|-++'"));
+        console.log(cliColor.gray("                        +  +--|    |--|--|_ |-"));
+        console.log(cliColor.gray("                     { /|__|  |/\\__|  |--- |||__/"));
+        console.log(cliColor.gray("                    +---------------___[}-_===_.'____                 /\\"));
+        console.log(cliColor.gray("                ____`-' ||___-{]_| _[}-  |     |_[___\\==--            \\/   _"));
+        console.log(cliColor.gray(" __..._____--==/___]_|__|_____________________________[___\\==--____,------' .7"));
+        console.log(cliColor.gray("|                        Welcome to Battleship                         BB-61/"));
+        console.log(cliColor.gray(" \\_________________________________________________________________________|"));
         console.log();
 
         this.InitializeGame();
@@ -55,6 +55,11 @@ class Battleship {
             console.log("Player, it's your turn");
             console.log("Enter coordinates for your shot :");
             var position = Battleship.ParsePosition(readline.question());
+            while(!gameController.isPositionValid(position)) {
+                console.log(cliColor.red("Invalid position entered!"));
+                console.log("Enter coordinates for your shot :");
+                position = Battleship.ParsePosition(readline.question());
+            }
             var isHit = gameController.CheckIsHit(this.enemyFleet, position);
 
             telemetryWorker.postMessage({eventName: 'Player_ShootPosition', properties:  {Position: position.toString(), IsHit: isHit}});
@@ -87,9 +92,9 @@ class Battleship {
 
             // Computer Turn
             var isHit = enemyController.AttemptShot(this.myFleet);
-            
+
             console.log();
-            
+
             if (isHit) {
                 beep();
 
