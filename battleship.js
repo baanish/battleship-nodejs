@@ -11,7 +11,7 @@ let telemetryWorker;
 
 class Battleship {
     start() {
-        telemetryWorker = new Worker("./TelemetryClient/telemetryClient.js");   
+        telemetryWorker = new Worker("./TelemetryClient/telemetryClient.js");
 
         console.log("Starting...");
         telemetryWorker.postMessage({eventName: 'ApplicationStarted', properties:  {Technology: 'Node.js'}});
@@ -55,6 +55,11 @@ class Battleship {
             console.log("Player, it's your turn");
             console.log("Enter coordinates for your shot :");
             var position = Battleship.ParsePosition(readline.question());
+            while(!gameController.isPositionValid(position)) {
+                console.log(cliColor.red("Invalid position entered!"));
+                console.log("Enter coordinates for your shot :");
+                position = Battleship.ParsePosition(readline.question());
+            }
             var isHit = gameController.CheckIsHit(this.enemyFleet, position);
 
             telemetryWorker.postMessage({eventName: 'Player_ShootPosition', properties:  {Position: position.toString(), IsHit: isHit}});
@@ -87,9 +92,9 @@ class Battleship {
 
             // Computer Turn
             var isHit = enemyController.AttemptShot(this.myFleet);
-            
+
             console.log();
-            
+
             if (isHit) {
                 beep();
 
